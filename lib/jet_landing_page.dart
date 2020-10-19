@@ -9,3 +9,4 @@ export 'src/widget/simple_paragraph.dart';
 export 'src/widget/text_card.dart';
 export 'src/widget/card_stripe.dart';
 export 'src/widget/card_list.dart';
+export 'src/widget/page_cover.dart';

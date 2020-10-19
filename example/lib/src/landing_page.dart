@@ -62,41 +62,10 @@ class LandingPage extends StatelessWidget {
                 fit: BoxFit.fitHeight,
                 height: 380,
               ),
-              Padding(
-                padding: EdgeInsets.all(32),
-                child: Column(
-                  children: [
-                    Text(
-                      'Jet Landing Page',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor, fontSize: 48),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 24),
-                      child: Text(
-                        'Simple Flutter Web Landing Page',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Text('Make Action!'),
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      padding: EdgeInsetsDirectional.only(
-                        start: 16,
-                        top: 16,
-                        end: 16,
-                        bottom: 16,
-                      ),
-                    ),
-                  ],
-                ),
+              PageCover(
+                title: 'Jet Landing Page',
+                subtitle: 'Simple Flutter Web Landing Page',
+                actionLabel: 'Make Action!',
               ),
             ),
             Container(
