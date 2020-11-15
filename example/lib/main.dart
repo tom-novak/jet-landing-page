@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:jet_landing_page_example/src/landing_page.dart';
 
 void main() {
-  runApp(MyApp());
+  var theme = ThemeData(
+    primaryColor: Colors.green.shade700,
+    primarySwatch: Colors.green,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
+
+  runApp(MyApp(theme));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final ThemeData theme;
+
+  MyApp(this.theme);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Colors.green.shade700,
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: theme ?? Theme.of(context),
       home: LandingPage(),
     );
   }

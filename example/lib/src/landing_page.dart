@@ -99,18 +99,88 @@ class LandingPage extends StatelessWidget {
               ParallaxText(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
             ),
-            Container(
-              color: Theme.of(context).primaryColor,
-              child: Row(
+            Footer(
+              info: SimpleParagraph(
+                title: 'Lorem Ipsum',
+                titleStyle: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(color: Colors.white),
+                text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
+                textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
+                      color: Colors.white,
+                    ),
+                padding: EdgeInsets.zero,
+              ),
+              flatNavigation: SimpleParagraph(
+                title: 'Lorem Ipsum',
+                titleStyle: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(color: Colors.white),
+                text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
+                textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
+                      color: Colors.white,
+                    ),
+                padding: EdgeInsets.zero,
+              ),
+              links:
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      Text('Lorem Ipsum'),
-                      Text(
-                          'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sapien. Integer vulputate sem a nibh rutrum consequat.'),
-                    ],
-                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Link 1',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      )),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Link 2',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      )),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Link 3',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      )),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Link 4',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      )),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Link 5',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: Colors.white),
+                      )),
                 ],
+              ),
+              copyright: Text(
+                '© Jet Landing Page',
+                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                      color: Colors.white,
+                    ),
               ),
             ),
           ],
