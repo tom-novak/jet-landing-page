@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
 
 class LandingPage extends StatefulWidget {
@@ -9,45 +8,40 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  GlobalKey scrollKey = GlobalKey();
   ScrollController _scrollController;
-  int screenHeight = 0;
-
-  void _onScroll() {
-    setState(() {});
-  }
 
   @override
   void initState() {
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
+    super.initState();
+  }
+
+  void _onScroll() {
+    setState(() {});
   }
 
   List<Widget> _buildCards(BuildContext context) {
     return [
       TextCard(
-        icon: Icons.flash_on,
+        icon: Icons.architecture,
         title: 'Lorem ipsum',
         text:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
       ),
       TextCard(
-        icon: Icons.flash_on,
+        icon: Icons.workspaces_outline,
         title: 'Lorem ipsum',
         text:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
       ),
       TextCard(
-        icon: Icons.flash_on,
+        icon: Icons.whatshot_outlined,
         title: 'Lorem ipsum',
         text:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
       ),
     ];
-  }
-
-  void _onPostFrameCallback(Duration duration) {
-    scrollKey.currentContext.size.height;
   }
 
   Widget _buildAppBar(BuildContext context) {
@@ -76,29 +70,30 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    SchedulerBinding.instance.addPostFrameCallback(_onPostFrameCallback);
-
     AppBar appBar = _buildAppBar(context);
-    var contentHeight =
-        MediaQuery.of(context).size.height - appBar.preferredSize.height;
+
+    var contentStart = appBar.preferredSize.height +
+        MediaQuery.of(context).padding.top;
+    var contentEnd = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
-        key: scrollKey,
         controller: _scrollController,
         child: Column(
           children: [
             ParallaxImage(
               image: Image.asset(
                 'assets/background1.jpg',
-                fit: BoxFit.fitHeight,
-                height: 380,
+                scale: 3,
               ).image,
-              height: 200,
-              screenHeight: contentHeight,
+              height: 500,
+              contentStart: contentStart,
+              contentEnd: contentEnd,
               child: PageCover(
                 title: 'Jet Landing Page',
                 subtitle: 'Simple Flutter Web Landing Page',
@@ -106,36 +101,39 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
             Container(
-                child: MediaQuery.of(context).orientation == Orientation.landscape
+                child: MediaQuery.of(context).orientation ==
+                        Orientation.landscape
                     ? CardStripe(
-                  children: _buildCards(context),
-                )
+                        children: _buildCards(context),
+                      )
                     : CardList(
-                  children: _buildCards(context),
-                )),
+                        children: _buildCards(context),
+                      )),
             ParallaxImage(
               image: Image.asset(
                 'assets/background2.jpg',
-                height: 380,
+                scale: 3,
               ).image,
-              height: 200,
-              screenHeight: contentHeight,
+              height: 500,
+              contentStart: contentStart,
+              contentEnd: contentEnd,
               child: ParallaxText(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
             ),
             SimpleParagraph(
               title: 'Simple Paragraph',
               text:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
             ),
             ParallaxImage(
               image: Image.asset(
                 'assets/background3.jpg',
                 fit: BoxFit.fitHeight,
-                height: 380,
+                scale: 3,
               ).image,
-              height: 200,
-              screenHeight: contentHeight,
+              height: 500,
+              contentStart: contentStart,
+              contentEnd: contentEnd,
               child: ParallaxText(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
             ),
@@ -147,10 +145,10 @@ class _LandingPageState extends State<LandingPage> {
                     .headline6
                     .copyWith(color: Colors.white),
                 text:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
                 textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-                  color: Colors.white,
-                ),
+                      color: Colors.white,
+                    ),
                 padding: EdgeInsets.zero,
               ),
               flatNavigation: SimpleParagraph(
@@ -160,14 +158,13 @@ class _LandingPageState extends State<LandingPage> {
                     .headline6
                     .copyWith(color: Colors.white),
                 text:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
                 textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-                  color: Colors.white,
-                ),
+                      color: Colors.white,
+                    ),
                 padding: EdgeInsets.zero,
               ),
-              links:
-              Column(
+              links: Column(
                 children: [
                   TextButton(
                       onPressed: () {},
@@ -219,8 +216,8 @@ class _LandingPageState extends State<LandingPage> {
               copyright: Text(
                 '© Jet Landing Page',
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  color: Colors.white,
-                ),
+                      color: Colors.white,
+                    ),
               ),
             ),
           ],

@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class ParallaxImage extends StatefulWidget {
-  static const double parallaxScale = 0.25;
-
   final ImageProvider image;
   final Widget child;
   final double height;
-  final double screenHeight;
+  final double contentStart;
+  final double contentEnd;
 
   ParallaxImage({
     this.image,
     this.child,
     this.height,
-    this.screenHeight = 800,
+    this.contentStart = 100,
+    this.contentEnd = 900,
   });
 
   @override
@@ -31,8 +31,8 @@ class _ParallaxImageState extends State<ParallaxImage> {
   }
 
   double _getParallaxShift() {
-    return (2 / (widget.screenHeight * ParallaxImage.parallaxScale / position) -
-        1) * -1;
+    var progress = ((widget.contentEnd - widget.contentStart) / position);
+    return (2 / progress - 1);
   }
 
   @override
@@ -44,7 +44,7 @@ class _ParallaxImageState extends State<ParallaxImage> {
       decoration: BoxDecoration(
           image: DecorationImage(
         image: widget.image,
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.none,
         alignment: Alignment(0.0, _getParallaxShift()),
       )),
       child: widget.child,
