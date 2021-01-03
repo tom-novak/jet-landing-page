@@ -19,6 +19,52 @@ class Footer extends StatelessWidget {
     this.color,
   });
 
+  Widget _buildHorizontalContent(BuildContext context) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      info != null
+          ? Expanded(
+              child: info,
+              flex: 3,
+            )
+          : SizedBox.shrink(),
+      flatNavigation != null
+          ? Expanded(
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 32.0),
+                  child: flatNavigation),
+              flex: 2,
+            )
+          : SizedBox.shrink(),
+      links != null
+          ? Expanded(
+              child: links,
+              flex: 1,
+            )
+          : SizedBox.shrink(),
+    ]);
+  }
+
+  Widget _buildPortraitContent(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        info != null ? info : SizedBox.shrink(),
+        flatNavigation != null
+            ? Padding(
+                padding: const EdgeInsets.only(top: 32),
+                child: flatNavigation,
+              )
+            : SizedBox.shrink(),
+        links != null
+            ? Padding(
+                padding: const EdgeInsets.only(top: 32),
+                child: links,
+              )
+            : SizedBox.shrink(),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,35 +72,16 @@ class Footer extends StatelessWidget {
       color: color ?? Theme.of(context).primaryColor,
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              info != null
-                  ? Expanded(
-                      child: info,
-                      flex: 3,
-                    )
-                  : SizedBox.shrink(),
-              flatNavigation != null
-                  ? Expanded(
-                      child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 32.0),
-                          child: flatNavigation),
-                      flex: 2,
-                    )
-                  : SizedBox.shrink(),
-              links != null
-                  ? Expanded(
-                      child: links,
-                      flex: 1,
-                    )
-                  : SizedBox.shrink(),
-            ],
-          ),
-          Row(
-            children: [
-              copyright != null ? copyright : SizedBox.shrink(),
-            ],
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? _buildPortraitContent(context)
+              : _buildHorizontalContent(context),
+          Padding(
+            padding: const EdgeInsets.only(top: 32),
+            child: Row(
+              children: [
+                copyright != null ? copyright : SizedBox.shrink(),
+              ],
+            ),
           ),
         ],
       ),
