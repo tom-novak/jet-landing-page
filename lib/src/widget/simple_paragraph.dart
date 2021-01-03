@@ -9,6 +9,7 @@ class SimpleParagraph extends StatelessWidget {
   final TextStyle titleStyle;
   final TextStyle textStyle;
   final EdgeInsets padding;
+  final CrossAxisAlignment alignment;
 
   SimpleParagraph({
     this.title = '',
@@ -16,14 +17,15 @@ class SimpleParagraph extends StatelessWidget {
     this.padding = defaultPadding,
     this.titleStyle,
     this.textStyle,
+    this.alignment = CrossAxisAlignment.start,
   });
 
   @override
   Widget build(BuildContext context) {
-    Theme.of(context).textTheme;
     return Padding(
       padding: padding,
       child: Column(
+        crossAxisAlignment: alignment,
         children: [
           title != null
               ? Padding(
