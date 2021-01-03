@@ -18,7 +18,7 @@ class TextCard extends StatelessWidget {
         ),
         title != null
             ? Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.only(top: 32, bottom: 16),
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.headline5,

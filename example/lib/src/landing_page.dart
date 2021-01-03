@@ -43,7 +43,7 @@ class _LandingPageState extends State<LandingPage> {
         icon: Icons.whatshot_outlined,
         title: 'Lorem ipsum',
         text:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
+            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis.',
       ),
     ];
   }
@@ -106,15 +106,7 @@ class _LandingPageState extends State<LandingPage> {
                 actionLabel: 'Make Action!',
               ),
             ),
-            Container(
-                child:
-                    MediaQuery.of(context).orientation == Orientation.landscape
-                        ? CardStripe(
-                            children: _buildCards(context),
-                          )
-                        : CardList(
-                            children: _buildCards(context),
-                          )),
+            CardContainer(_buildCards(context)),
             ParallaxImage(
               image: Image.asset(
                 'assets/background2.jpg',
