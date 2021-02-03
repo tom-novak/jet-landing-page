@@ -41,7 +41,7 @@ class SimpleParagraph extends StatelessWidget {
               : SizedBox.shrink(),
           Text(
             text,
-            style: textStyle ?? Theme.of(context).textTheme.bodyText1,
+            style: textStyle ?? Theme.of(context).textTheme.bodyText1.copyWith(height: 1.75),
             textAlign: textAlign ?? defaultTextAlign,
           ),
         ],

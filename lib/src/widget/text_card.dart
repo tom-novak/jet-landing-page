@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TextCard extends StatelessWidget {
+  static final TextAlign defaultTextAlign = TextAlign.start;
+
   final IconData icon;
   final String title;
   final String text;
+  final TextStyle textStyle;
+  final TextAlign textAlign;
 
-  TextCard({this.icon, this.title, this.text});
+  TextCard({
+    this.icon,
+    this.title,
+    this.text,
+    this.textAlign,
+    this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,8 @@ class TextCard extends StatelessWidget {
         text != null
             ? Text(
                 text,
-                textAlign: TextAlign.justify,
+                style: textStyle ?? Theme.of(context).textTheme.bodyText1.copyWith(height: 1.75),
+                textAlign: textAlign ?? defaultTextAlign,
               )
             : SizedBox.shrink(),
       ],
