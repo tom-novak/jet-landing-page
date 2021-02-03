@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jet_landing_page_example/src/landing_page.dart';
+import 'package:jet_landing_page_example/src/example_page.dart';
 
 void main() {
   var theme = ThemeData(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme ?? Theme.of(context),
-      home: LandingPage(),
+      home: ExamplePage(),
     );
   }
 }
