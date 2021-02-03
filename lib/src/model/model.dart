@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class Card {
   final String imageUrl;
   final String title;
@@ -13,9 +15,12 @@ class Link {
   Link({this.text, this.url});
 }
 
-class Footer {
-  final String title;
-  final String description;
+typedef NavigationTapCallback = Function();
 
-  Footer({this.title, this.description});
+class NavigationItem {
+  final Icon icon;
+  final String label;
+  final NavigationTapCallback onTap;
+
+  NavigationItem({this.icon, this.label, this.onTap});
 }

@@ -3,7 +3,14 @@ import 'package:jet_landing_page/jet_landing_page.dart';
 
 var customFooterLinkStyle = TextStyle(color: Colors.white);
 
+typedef NavigationCallback = Function(NavigationItem item);
+
 class LandingPage extends StatefulWidget {
+  final List<NavigationItem> mainNavigationItems;
+  final NavigationCallback mainNavigationCallback;
+
+  LandingPage({this.mainNavigationItems, this.mainNavigationCallback});
+
   @override
   State createState() => _LandingPageState();
 }
@@ -55,23 +62,51 @@ class _LandingPageState extends State<LandingPage> {
         'Logo',
         style: TextStyle(color: Theme.of(context).primaryColor),
       ),
-      actions: [
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'Navbar Link',
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'Navbar Link',
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-        ),
-      ],
     );
+  }
+
+  Widget _buildDrawerNavigation(BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      return Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text('Header'),
+              decoration: BoxDecoration(color: Colors.green),
+            ),
+            ListTile(
+              title: Text('Link 1'),
+            ),
+            ListTile(
+              title: Text('Link 2'),
+            ),
+            ListTile(
+              title: Text('Link 3'),
+            ),
+          ],
+        ),
+      );
+    }
+    return null;
+  }
+
+  List<BottomNavigationBarItem> _getBottomNavigationBarItems(List<NavigationItem> items) {
+    var bottomNavigationBarItems = <BottomNavigationBarItem>[];
+    for (var item in items) {
+      bottomNavigationBarItems.add(item.toBottomNavigationBarItem());
+    }
+    return bottomNavigationBarItems;
+  }
+
+  Widget _buildBottomNavigation(BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      return BottomNavigationBar(
+        elevation: 32.0,
+        items: _getBottomNavigationBarItems(widget.mainNavigationItems),
+        onTap: (index) {},
+      );
+    }
+    return null;
   }
 
   @override
@@ -88,6 +123,7 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       appBar: appBar,
+      drawer: _buildDrawerNavigation(context),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
@@ -223,6 +259,7 @@ class _LandingPageState extends State<LandingPage> {
           ],
         ),
       ),
+      bottomNavigationBar: _buildBottomNavigation(context),
     );
   }
 }
