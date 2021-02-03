@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class SimpleParagraph extends StatelessWidget {
   static const EdgeInsets defaultPadding = EdgeInsets.all(32);
+  static const TextAlign defaultTextAlign = TextAlign.start;
 
   final String title;
   final String text;
@@ -10,6 +11,7 @@ class SimpleParagraph extends StatelessWidget {
   final TextStyle textStyle;
   final EdgeInsets padding;
   final CrossAxisAlignment alignment;
+  final TextAlign textAlign;
 
   SimpleParagraph({
     this.title = '',
@@ -18,6 +20,7 @@ class SimpleParagraph extends StatelessWidget {
     this.titleStyle,
     this.textStyle,
     this.alignment = CrossAxisAlignment.start,
+    this.textAlign,
   });
 
   @override
@@ -39,7 +42,7 @@ class SimpleParagraph extends StatelessWidget {
           Text(
             text,
             style: textStyle ?? Theme.of(context).textTheme.bodyText1,
-            textAlign: TextAlign.justify,
+            textAlign: textAlign ?? defaultTextAlign,
           ),
         ],
       ),
