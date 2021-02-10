@@ -14,8 +14,9 @@ var appTheme = ThemeData(
       headline2: typography.black.headline2.copyWith(color: accentColor, fontSize: 24),
       headline3: typography.black.headline3.copyWith(fontSize: 24),
       headline4: typography.black.headline4.copyWith(fontSize: 24),
-      headline6: typography.white.headline6,
-      bodyText2: typography.white.bodyText2,
+      headline6: typography.white.headline6.copyWith(fontWeight: FontWeight.w300),
+      bodyText1: typography.white.bodyText1.copyWith(fontWeight: FontWeight.w300),
+      bodyText2: typography.white.bodyText2.copyWith(fontWeight: FontWeight.w100),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: accentColor,
@@ -32,8 +33,9 @@ var darkTheme = ThemeData(
     headline2: typography.white.headline2.copyWith(color: darkAccentColor, fontSize: 24),
     headline3: typography.white.headline3.copyWith(fontSize: 24),
     headline4: typography.white.headline4.copyWith(fontSize: 24),
-    headline6: typography.white.headline6.copyWith(color: Colors.grey[400]),
-    bodyText2: typography.white.bodyText2.copyWith(color: Colors.grey[400]),
+    headline6: typography.white.headline6.copyWith(color: Colors.grey[400], fontWeight: FontWeight.w300),
+    bodyText1: typography.white.bodyText1.copyWith(fontWeight: FontWeight.w300),
+    bodyText2: typography.white.bodyText2.copyWith(color: Colors.grey[400], fontWeight: FontWeight.w100),
   ),
 );
 
