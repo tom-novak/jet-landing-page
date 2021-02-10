@@ -20,28 +20,31 @@ class Footer extends StatelessWidget {
   });
 
   Widget _buildHorizontalContent(BuildContext context) {
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      info != null
-          ? Expanded(
-              child: info,
-              flex: 3,
-            )
-          : SizedBox.shrink(),
-      flatNavigation != null
-          ? Expanded(
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  child: flatNavigation),
-              flex: 2,
-            )
-          : SizedBox.shrink(),
-      links != null
-          ? Expanded(
-              child: links,
-              flex: 1,
-            )
-          : SizedBox.shrink(),
-    ]);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        info != null
+            ? Expanded(
+                child: info,
+                flex: 3,
+              )
+            : SizedBox.shrink(),
+        flatNavigation != null
+            ? Expanded(
+                child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 32.0),
+                    child: flatNavigation),
+                flex: 2,
+              )
+            : SizedBox.shrink(),
+        links != null
+            ? Expanded(
+                child: links,
+                flex: 1,
+              )
+            : SizedBox.shrink(),
+      ],
+    );
   }
 
   Widget _buildPortraitContent(BuildContext context) {
@@ -69,7 +72,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
-      color: color ?? Theme.of(context).primaryColor,
+      color: color ?? Theme.of(context).accentColor,
       child: Column(
         children: [
           MediaQuery.of(context).orientation == Orientation.portrait

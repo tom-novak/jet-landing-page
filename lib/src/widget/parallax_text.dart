@@ -12,10 +12,7 @@ class ParallaxText extends StatelessWidget {
       padding: EdgeInsets.all(32),
       child: Text(
         text,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 24,
-        ),
+        style: Theme.of(context).textTheme.headline4,
         textAlign: TextAlign.center,
       ),
     );

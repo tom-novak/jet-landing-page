@@ -32,35 +32,19 @@ class PageCover extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: titleTextStyle != null
-                ? titleTextStyle
-                : TextStyle(
-                    color: Theme.of(context).primaryColor, fontSize: 48),
+            style: titleTextStyle ?? Theme.of(context).textTheme.headline1,
           ),
           Padding(
             padding: EdgeInsets.only(top: 16, bottom: 24),
             child: Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: subtitleTextStyle != null
-                  ? subtitleTextStyle
-                  : TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
+              style: subtitleTextStyle ?? Theme.of(context).textTheme.headline4
             ),
           ),
           MaterialButton(
             onPressed: () {},
             child: Text(actionLabel),
-            color: Theme.of(context).primaryColor,
-            textColor: Colors.white,
-            padding: EdgeInsetsDirectional.only(
-              start: 16,
-              top: 16,
-              end: 16,
-              bottom: 16,
-            ),
           ),
         ],
       ),
