@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
 
-var customFooterLinkStyle = TextStyle(color: Colors.white);
-
 typedef NavigationCallback = Function(NavigationItem item);
 
 class LandingPage extends StatefulWidget {
@@ -16,8 +14,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  TextStyle footerLinkTheme;
-  TextStyle footerHeadlineTheme;
 
   ScrollController _scrollController;
 
@@ -57,10 +53,9 @@ class _LandingPageState extends State<LandingPage> {
 
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
       title: Text(
         'Logo',
-        style: TextStyle(color: Theme.of(context).primaryColor),
+        style: Theme.of(context).textTheme.headline2,
       ),
     );
   }
@@ -70,10 +65,6 @@ class _LandingPageState extends State<LandingPage> {
       return Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              child: Text('Header'),
-              decoration: BoxDecoration(color: Colors.green),
-            ),
             ListTile(
               title: Text('Link 1'),
             ),
@@ -90,7 +81,8 @@ class _LandingPageState extends State<LandingPage> {
     return null;
   }
 
-  List<BottomNavigationBarItem> _getBottomNavigationBarItems(List<NavigationItem> items) {
+  List<BottomNavigationBarItem> _getBottomNavigationBarItems(
+      List<NavigationItem> items) {
     var bottomNavigationBarItems = <BottomNavigationBarItem>[];
     for (var item in items) {
       bottomNavigationBarItems.add(item.toBottomNavigationBarItem());
@@ -111,10 +103,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    var appTextTheme = Theme.of(context).textTheme;
-    footerLinkTheme = appTextTheme.bodyText1.merge(customFooterLinkStyle);
-    footerHeadlineTheme = appTextTheme.headline6.copyWith(color: Colors.white);
-
     AppBar appBar = _buildAppBar(context);
 
     var contentStart =
@@ -175,28 +163,18 @@ class _LandingPageState extends State<LandingPage> {
             Footer(
               info: SimpleParagraph(
                 title: 'Info',
-                titleStyle: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(color: Colors.white),
+                titleStyle: Theme.of(context).copyWith(brightness: Brightness.dark).textTheme.headline6,
                 text:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
-                textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-                      color: Colors.white,
-                    ),
+                textStyle: Theme.of(context).textTheme.bodyText2,
                 padding: EdgeInsets.zero,
               ),
               flatNavigation: SimpleParagraph(
                 title: 'Flat navigation',
-                titleStyle: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(color: Colors.white),
+                titleStyle: Theme.of(context).textTheme.headline6,
                 text:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
-                textStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-                      color: Colors.white,
-                    ),
+                textStyle: Theme.of(context).textTheme.bodyText2,
                 padding: EdgeInsets.zero,
               ),
               links: Column(
@@ -206,54 +184,32 @@ class _LandingPageState extends State<LandingPage> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       'Connect',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(color: Colors.white),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
                   TextButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       child: Text(
                         'Link 1',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                   TextButton(
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       onPressed: () {},
                       child: Text(
                         'Link 2',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                   TextButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       child: Text(
                         'Link 3',
-                        style: footerLinkTheme,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
-                      child: Text(
-                        'Link 4',
-                        style: footerLinkTheme,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
-                      child: Text(
-                        'Link 5',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                 ],
               ),
               copyright: Text(
                 '© Jet Landing Page',
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
-                      color: Colors.white,
-                    ),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
           ],

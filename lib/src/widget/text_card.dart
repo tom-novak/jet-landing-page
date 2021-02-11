@@ -31,7 +31,7 @@ class TextCard extends StatelessWidget {
                 padding: EdgeInsets.only(top: 32, bottom: 16),
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline3,
                 ))
             : SizedBox.shrink(),
         text != null

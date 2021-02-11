@@ -35,13 +35,13 @@ class SimpleParagraph extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Text(
                     title,
-                    style: titleStyle ?? Theme.of(context).textTheme.headline6,
+                    style: titleStyle ?? Theme.of(context).textTheme.headline3,
                   ),
               )
               : SizedBox.shrink(),
           Text(
             text,
-            style: textStyle ?? Theme.of(context).textTheme.bodyText1.copyWith(height: 1.75),
+            style: textStyle ?? Theme.of(context).textTheme.bodyText1,
             textAlign: textAlign ?? defaultTextAlign,
           ),
         ],
