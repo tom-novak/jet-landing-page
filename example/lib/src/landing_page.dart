@@ -14,8 +14,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  TextStyle footerLinkTheme;
-  TextStyle footerHeadlineTheme;
 
   ScrollController _scrollController;
 
@@ -105,10 +103,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    var appTextTheme = Theme.of(context).textTheme;
-    footerLinkTheme = appTextTheme.bodyText1;
-    footerHeadlineTheme = appTextTheme.headline6;
-
     AppBar appBar = _buildAppBar(context);
 
     var contentStart =
@@ -195,43 +189,21 @@ class _LandingPageState extends State<LandingPage> {
                   ),
                   TextButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       child: Text(
                         'Link 1',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                   TextButton(
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       onPressed: () {},
                       child: Text(
                         'Link 2',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                   TextButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
                       child: Text(
                         'Link 3',
-                        style: footerLinkTheme,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
-                      child: Text(
-                        'Link 4',
-                        style: footerLinkTheme,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero, minimumSize: Size(48, 48)),
-                      child: Text(
-                        'Link 5',
-                        style: footerLinkTheme,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )),
                 ],
               ),
