@@ -13,10 +13,10 @@ var appTheme = ThemeData(
       headline1: typography.black.headline1.copyWith(color: accentColor, fontSize: 48),
       headline2: typography.black.headline2.copyWith(color: accentColor, fontSize: 24),
       headline3: typography.black.headline3.copyWith(fontSize: 24),
-      headline4: typography.black.headline4.copyWith(fontSize: 24),
+      headline4: typography.white.headline4.copyWith(fontSize: 24),
       headline6: typography.white.headline6.copyWith(fontWeight: FontWeight.w300),
-      bodyText1: typography.white.bodyText1.copyWith(fontWeight: FontWeight.w300),
-      bodyText2: typography.white.bodyText2.copyWith(fontWeight: FontWeight.w100),
+      bodyText1: typography.black.bodyText1.copyWith(fontWeight: FontWeight.w300, height: 1.75),
+      bodyText2: typography.white.bodyText2.copyWith(fontWeight: FontWeight.w200),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: accentColor,
@@ -34,8 +34,8 @@ var darkTheme = ThemeData(
     headline3: typography.white.headline3.copyWith(fontSize: 24),
     headline4: typography.white.headline4.copyWith(fontSize: 24),
     headline6: typography.white.headline6.copyWith(color: Colors.grey[400], fontWeight: FontWeight.w300),
-    bodyText1: typography.white.bodyText1.copyWith(fontWeight: FontWeight.w300),
-    bodyText2: typography.white.bodyText2.copyWith(color: Colors.grey[400], fontWeight: FontWeight.w100),
+    bodyText1: typography.white.bodyText1.copyWith(fontWeight: FontWeight.w300, height: 1.75),
+    bodyText2: typography.white.bodyText2.copyWith(color: Colors.grey[400], fontWeight: FontWeight.w200),
   ),
 );
 
@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: appTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
       home: ExamplePage(),
     );
   }
