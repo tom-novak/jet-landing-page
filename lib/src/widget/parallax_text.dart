@@ -10,10 +10,15 @@ class ParallaxText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(32),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.headline4,
-        textAlign: TextAlign.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
+            style: Theme.of(context).textTheme.headline4,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
