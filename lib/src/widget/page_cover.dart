@@ -28,6 +28,7 @@ class PageCover extends StatelessWidget {
     return Padding(
       padding: pagePadding,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             title,
