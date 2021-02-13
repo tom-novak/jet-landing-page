@@ -25,6 +25,7 @@ class TextCard extends StatelessWidget {
         Icon(
           icon,
           size: 64,
+          color: Theme.of(context).textTheme.bodyText1.color,
         ),
         title != null
             ? Padding(
