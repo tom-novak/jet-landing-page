@@ -20,14 +20,13 @@ var appTheme = ThemeData(
     bodyText1: typography.black.bodyText1.copyWith(color: textColor, fontWeight: FontWeight.w300, height: 1.75),
     bodyText2: typography.white.bodyText2.copyWith(fontWeight: FontWeight.w200),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: accentColor,
-  ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      padding: EdgeInsets.zero,
-      minimumSize: Size(48, 48),
+      primary: accentColor,
     ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: accentColor,
   ),
   buttonTheme: ButtonThemeData(
     buttonColor: accentColor,
@@ -54,13 +53,19 @@ var darkTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      padding: EdgeInsets.zero,
-      minimumSize: Size(48, 48),
+      primary: darkAccentColor,
     ),
   ),
   buttonTheme: ButtonThemeData(
     buttonColor: darkAccentColor,
     textTheme: ButtonTextTheme.primary,
     height: 48,
+  ),
+);
+
+var footerLinkTheme = TextButtonThemeData(
+  style: TextButton.styleFrom(
+    padding: EdgeInsets.zero,
+    minimumSize: Size(48, 48),
   ),
 );
