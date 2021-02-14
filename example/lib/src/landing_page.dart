@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
+import 'package:jet_landing_page_example/src/app_theme.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
@@ -14,7 +15,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-
   ScrollController _scrollController;
 
   @override
@@ -57,26 +57,26 @@ class _LandingPageState extends State<LandingPage> {
         'Logo',
         style: Theme.of(context).textTheme.headline2,
       ),
+      actions: _buildLandscapeNavigation(context),
     );
   }
 
-  Widget _buildDrawerNavigation(BuildContext context) {
+  List<Widget> _buildLandscapeNavigation(BuildContext context) {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
-      return Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text('Link 1'),
-            ),
-            ListTile(
-              title: Text('Link 2'),
-            ),
-            ListTile(
-              title: Text('Link 3'),
-            ),
-          ],
+      return [
+        TextButton(
+          onPressed: () {},
+          child: Text('Home'),
         ),
-      );
+        TextButton(
+          onPressed: () {},
+          child: Text('Features'),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text('About'),
+        ),
+      ];
     }
     return null;
   }
@@ -90,7 +90,7 @@ class _LandingPageState extends State<LandingPage> {
     return bottomNavigationBarItems;
   }
 
-  Widget _buildBottomNavigation(BuildContext context) {
+  Widget _buildPortraitNavigation(BuildContext context) {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return BottomNavigationBar(
         elevation: 32.0,
@@ -111,7 +111,6 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       appBar: appBar,
-      drawer: _buildDrawerNavigation(context),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
@@ -160,62 +159,70 @@ class _LandingPageState extends State<LandingPage> {
               child: ParallaxText(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
             ),
-            Footer(
-              info: SimpleParagraph(
-                title: 'Info',
-                titleStyle: Theme.of(context).copyWith(brightness: Brightness.dark).textTheme.headline6,
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
-                textStyle: Theme.of(context).textTheme.bodyText2,
-                padding: EdgeInsets.zero,
+            Theme(
+              data: Theme.of(context).copyWith(
+                textButtonTheme: footerLinkTheme,
               ),
-              flatNavigation: SimpleParagraph(
-                title: 'Flat navigation',
-                titleStyle: Theme.of(context).textTheme.headline6,
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
-                textStyle: Theme.of(context).textTheme.bodyText2,
-                padding: EdgeInsets.zero,
-              ),
-              links: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      'Connect',
-                      style: Theme.of(context).textTheme.headline6,
+              child: Footer(
+                info: SimpleParagraph(
+                  title: 'Info',
+                  titleStyle: Theme.of(context)
+                      .copyWith(brightness: Brightness.dark)
+                      .textTheme
+                      .headline6,
+                  text:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
+                  textStyle: Theme.of(context).textTheme.bodyText2,
+                  padding: EdgeInsets.zero,
+                ),
+                flatNavigation: SimpleParagraph(
+                  title: 'Flat navigation',
+                  titleStyle: Theme.of(context).textTheme.headline6,
+                  text:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
+                  textStyle: Theme.of(context).textTheme.bodyText2,
+                  padding: EdgeInsets.zero,
+                ),
+                links: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        'Connect',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
                     ),
-                  ),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Link 1',
-                        style: Theme.of(context).textTheme.bodyText2,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Link 2',
-                        style: Theme.of(context).textTheme.bodyText2,
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Link 3',
-                        style: Theme.of(context).textTheme.bodyText2,
-                      )),
-                ],
-              ),
-              copyright: Text(
-                '© Jet Landing Page',
-                style: Theme.of(context).textTheme.bodyText2,
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Link 1',
+                          style: Theme.of(context).textTheme.bodyText2,
+                        )),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Link 2',
+                          style: Theme.of(context).textTheme.bodyText2,
+                        )),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Link 3',
+                          style: Theme.of(context).textTheme.bodyText2,
+                        )),
+                  ],
+                ),
+                copyright: Text(
+                  '© Jet Landing Page',
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigation(context),
+      bottomNavigationBar: _buildPortraitNavigation(context),
     );
   }
 }
