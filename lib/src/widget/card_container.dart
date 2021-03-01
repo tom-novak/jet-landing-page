@@ -5,7 +5,7 @@ class CardContainer extends StatelessWidget {
 
   final List<Widget> children;
 
-  CardContainer(this.children);
+  const CardContainer({Key key, this.children}) : super(key: key);
 
   List<Widget> _buildItems(BuildContext context) {
     var cards = <Widget>[];
