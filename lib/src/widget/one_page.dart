@@ -3,29 +3,39 @@ import 'package:flutter/material.dart';
 typedef SectionActiveCallback = void Function(Key activeSectionKey);
 
 class OnePageController extends ValueNotifier<Key> {
+  final ScrollController scrollController;
+  final sectionPositions = <Key, double>{};
 
-  OnePageController(Key key): super(key);
+  OnePageController({Key key, @required this.scrollController}) : super(key) {
+    scrollController.addListener(_onScroll);
+  }
 
-  Future<void> animateTo() {
+  Future<void> animateTo(Key key, {Duration duration, Curve curve}) {
+    if (sectionPositions.containsKey(key)) {
+      scrollController.animateTo(sectionPositions[key],
+          curve: curve, duration: duration);
+    }
+  }
 
+  void _onScroll() {
+    // TODO implement me!
   }
 }
 
 class OnePage extends StatefulWidget {
   final SingleChildScrollView child;
-  final List<Key> sections;
+  final List<GlobalKey> sections;
   final OnePageController controller;
 
   OnePage({this.child, this.sections, OnePageController controller})
-      : controller = controller ?? OnePageController();
+      : controller =
+            controller ?? OnePageController(scrollController: child.controller);
 
   @override
   State createState() => _OnePageState();
 }
 
 class _OnePageState extends State<OnePage> {
-  final sectionPositions = <Key, double>{};
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_onPostFrameCallback);
@@ -43,14 +53,13 @@ class _OnePageState extends State<OnePage> {
   }
 
   void _onPostFrameCallback(Duration duration) {
-    // positionHome = (keyHome.currentContext.findRenderObject() as RenderBox)
-    //     .localToGlobal(Offset.zero)
-    //     .dy;
-    // positionCards = (keyCards.currentContext.findRenderObject() as RenderBox)
-    //     .localToGlobal(Offset.zero)
-    //     .dy;
-    // positionAbout = (keyAbout.currentContext.findRenderObject() as RenderBox)
-    //     .localToGlobal(Offset.zero)
-    //     .dy;
+    widget.controller.sectionPositions.clear();
+    for (var sectionKey in widget.sections) {
+      widget.controller.sectionPositions.putIfAbsent(
+          sectionKey,
+          () => (sectionKey.currentContext.findRenderObject() as RenderBox)
+              .localToGlobal(Offset.zero)
+              .dy);
+    }
   }
 }
