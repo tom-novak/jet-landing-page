@@ -11,13 +11,14 @@ class Footer extends StatelessWidget {
   final Color color;
 
   Footer({
+    Key key,
     this.info,
     this.flatNavigation,
     this.links,
     this.copyright,
     this.padding = defaultPadding,
     this.color,
-  });
+  }) : super(key: key);
 
   Widget _buildHorizontalContent(BuildContext context) {
     return Row(

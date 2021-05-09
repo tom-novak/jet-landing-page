@@ -4,6 +4,12 @@ import 'package:jet_landing_page_example/src/app_theme.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
+enum PageSection {
+  home,
+  cards,
+  about,
+}
+
 class LandingPage extends StatefulWidget {
   final List<NavigationItem> mainNavigationItems;
   final NavigationCallback mainNavigationCallback;
@@ -16,11 +22,18 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   ScrollController _scrollController;
+  OnePageController _onePageController;
+  var sectionMap = <PageSection, GlobalKey>{};
 
   @override
   void initState() {
+    for (var section in PageSection.values) {
+      sectionMap.putIfAbsent(section, () => GlobalKey());
+    }
+    //WidgetsBinding.instance.addPostFrameCallback(_onPostFrameCallback);
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
+    _onePageController = OnePageController(scrollController: _scrollController);
     super.initState();
   }
 
@@ -95,7 +108,21 @@ class _LandingPageState extends State<LandingPage> {
       return BottomNavigationBar(
         elevation: 32.0,
         items: _getBottomNavigationBarItems(widget.mainNavigationItems),
-        onTap: (index) {},
+        onTap: (index) {
+          GlobalKey selectedSectionKey;
+          switch (index) {
+            case 1:
+              selectedSectionKey = sectionMap.values.elementAt(1);
+              break;
+            case 2:
+              selectedSectionKey = sectionMap.values.elementAt(2);
+              break;
+            default:
+              selectedSectionKey = sectionMap.values.elementAt(0);
+          }
+          _onePageController.animateTo(selectedSectionKey,
+              curve: Curves.linear, duration: Duration(milliseconds: 400));
+        },
       );
     }
     return null;
@@ -111,115 +138,124 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          children: [
-            ParallaxImage(
-              image: Image.asset(
-                'assets/background1.jpg',
-                scale: 3,
-              ).image,
-              height: 500,
-              contentStart: contentStart,
-              contentEnd: contentEnd,
-              child: PageCover(
-                title: 'Jet Landing Page',
-                subtitle: 'Simple Flutter Web Landing Page',
-                actionLabel: 'Make Action!',
-              ),
-            ),
-            CardContainer(_buildCards(context)),
-            ParallaxImage(
-              image: Image.asset(
-                'assets/background2.jpg',
-                scale: 3,
-              ).image,
-              height: 500,
-              contentStart: contentStart,
-              contentEnd: contentEnd,
-              child: ParallaxText(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
-            ),
-            SimpleParagraph(
-              alignment: CrossAxisAlignment.center,
-              title: 'Simple Paragraph',
-              text:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
-            ),
-            ParallaxImage(
-              image: Image.asset(
-                'assets/background3.jpg',
-                fit: BoxFit.fitHeight,
-                scale: 3,
-              ).image,
-              height: 500,
-              contentStart: contentStart,
-              contentEnd: contentEnd,
-              child: ParallaxText(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
-            ),
-            Theme(
-              data: Theme.of(context).copyWith(
-                textButtonTheme: footerLinkTheme,
-              ),
-              child: Footer(
-                info: SimpleParagraph(
-                  title: 'Info',
-                  titleStyle: Theme.of(context)
-                      .copyWith(brightness: Brightness.dark)
-                      .textTheme
-                      .headline6,
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
-                  textStyle: Theme.of(context).textTheme.bodyText2,
-                  padding: EdgeInsets.zero,
+      body: OnePage(
+        controller: _onePageController,
+        sections: sectionMap.values.toList(),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            children: [
+              ParallaxImage(
+                key: sectionMap[PageSection.home],
+                image: Image.asset(
+                  'assets/background1.jpg',
+                  scale: 3,
+                ).image,
+                height: 500,
+                contentStart: contentStart,
+                contentEnd: contentEnd,
+                child: PageCover(
+                  title: 'Jet Landing Page',
+                  subtitle: 'Simple Flutter Web Landing Page',
+                  actionLabel: 'Make Action!',
                 ),
-                flatNavigation: SimpleParagraph(
-                  title: 'Flat navigation',
-                  titleStyle: Theme.of(context).textTheme.headline6,
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
-                  textStyle: Theme.of(context).textTheme.bodyText2,
-                  padding: EdgeInsets.zero,
+              ),
+              CardContainer(
+                key: sectionMap[PageSection.cards],
+                children: _buildCards(context),
+              ),
+              ParallaxImage(
+                image: Image.asset(
+                  'assets/background2.jpg',
+                  scale: 3,
+                ).image,
+                height: 500,
+                contentStart: contentStart,
+                contentEnd: contentEnd,
+                child: ParallaxText(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+              ),
+              SimpleParagraph(
+                alignment: CrossAxisAlignment.center,
+                title: 'Simple Paragraph',
+                text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
+              ),
+              ParallaxImage(
+                image: Image.asset(
+                  'assets/background3.jpg',
+                  fit: BoxFit.fitHeight,
+                  scale: 3,
+                ).image,
+                height: 500,
+                contentStart: contentStart,
+                contentEnd: contentEnd,
+                child: ParallaxText(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+              ),
+              Theme(
+                data: Theme.of(context).copyWith(
+                  textButtonTheme: footerLinkTheme,
                 ),
-                links: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Connect',
-                        style: Theme.of(context).textTheme.headline6,
+                child: Footer(
+                  key: sectionMap[PageSection.about],
+                  info: SimpleParagraph(
+                    title: 'Info',
+                    titleStyle: Theme.of(context)
+                        .copyWith(brightness: Brightness.dark)
+                        .textTheme
+                        .headline6,
+                    text:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
+                    textStyle: Theme.of(context).textTheme.bodyText2,
+                    padding: EdgeInsets.zero,
+                  ),
+                  flatNavigation: SimpleParagraph(
+                    title: 'Flat navigation',
+                    titleStyle: Theme.of(context).textTheme.headline6,
+                    text:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
+                    textStyle: Theme.of(context).textTheme.bodyText2,
+                    padding: EdgeInsets.zero,
+                  ),
+                  links: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'Connect',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
                       ),
-                    ),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Link 1',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        )),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Link 2',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        )),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Link 3',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        )),
-                  ],
-                ),
-                copyright: Text(
-                  '© Jet Landing Page',
-                  style: Theme.of(context).textTheme.bodyText2,
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Link 1',
+                            style: Theme.of(context).textTheme.bodyText2,
+                          )),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Link 2',
+                            style: Theme.of(context).textTheme.bodyText2,
+                          )),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Link 3',
+                            style: Theme.of(context).textTheme.bodyText2,
+                          )),
+                    ],
+                  ),
+                  copyright: Text(
+                    '© Jet Landing Page',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: _buildPortraitNavigation(context),

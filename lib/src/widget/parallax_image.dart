@@ -9,12 +9,13 @@ class ParallaxImage extends StatefulWidget {
   final double contentEnd;
 
   ParallaxImage({
+    Key key,
     this.image,
     this.child,
     this.height,
     this.contentStart = 100,
     this.contentEnd = 900,
-  });
+  }) : super(key: key);
 
   @override
   State createState() => _ParallaxImageState();
