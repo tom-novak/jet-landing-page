@@ -4,6 +4,12 @@ import 'package:jet_landing_page_example/src/app_theme.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
+enum PageSection {
+  home,
+  cards,
+  about,
+}
+
 class LandingPage extends StatefulWidget {
   final List<NavigationItem> mainNavigationItems;
   final NavigationCallback mainNavigationCallback;
@@ -15,15 +21,15 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  var keyHome = GlobalKey();
-  var keyCards = GlobalKey();
-  var keyAbout = GlobalKey();
-
   ScrollController _scrollController;
   OnePageController _onePageController;
+  var sectionMap = <PageSection, GlobalKey>{};
 
   @override
   void initState() {
+    for (var section in PageSection.values) {
+      sectionMap.putIfAbsent(section, () => GlobalKey());
+    }
     //WidgetsBinding.instance.addPostFrameCallback(_onPostFrameCallback);
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
@@ -106,13 +112,13 @@ class _LandingPageState extends State<LandingPage> {
           GlobalKey selectedSectionKey;
           switch (index) {
             case 1:
-              selectedSectionKey = keyCards;
+              selectedSectionKey = sectionMap.values.elementAt(1);
               break;
             case 2:
-              selectedSectionKey = keyAbout;
+              selectedSectionKey = sectionMap.values.elementAt(2);
               break;
             default:
-              selectedSectionKey = keyHome;
+              selectedSectionKey = sectionMap.values.elementAt(0);
           }
           _onePageController.animateTo(selectedSectionKey,
               curve: Curves.linear, duration: Duration(milliseconds: 400));
@@ -134,17 +140,13 @@ class _LandingPageState extends State<LandingPage> {
       appBar: appBar,
       body: OnePage(
         controller: _onePageController,
-        sections: [
-          keyHome,
-          keyCards,
-          keyAbout,
-        ],
+        sections: sectionMap.values.toList(),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Column(
             children: [
               ParallaxImage(
-                key: keyHome,
+                key: sectionMap[PageSection.home],
                 image: Image.asset(
                   'assets/background1.jpg',
                   scale: 3,
@@ -159,7 +161,7 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
               CardContainer(
-                key: keyCards,
+                key: sectionMap[PageSection.cards],
                 children: _buildCards(context),
               ),
               ParallaxImage(
@@ -196,7 +198,7 @@ class _LandingPageState extends State<LandingPage> {
                   textButtonTheme: footerLinkTheme,
                 ),
                 child: Footer(
-                  key: keyAbout,
+                  key: sectionMap[PageSection.about],
                   info: SimpleParagraph(
                     title: 'Info',
                     titleStyle: Theme.of(context)
