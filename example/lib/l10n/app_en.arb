@@ -1,0 +1,9 @@
+{
+    "flutterDemo": "Flutter Demo",
+    "@flutterDemo": {
+      "description": "App title"
+    },
+    "home": "Home",
+    "features": "Features",
+    "about": "About"
+}
