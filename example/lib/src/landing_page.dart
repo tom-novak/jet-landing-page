@@ -3,6 +3,7 @@ import 'package:jet_landing_page/jet_landing_page.dart';
 import 'package:jet_landing_page_example/src/example_cards.dart';
 import 'package:jet_landing_page_example/src/example_footer.dart';
 import 'package:jet_landing_page_example/src/one_page_navigation_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
@@ -47,15 +48,15 @@ class _LandingPageState extends State<LandingPage> {
       return [
         TextButton(
           onPressed: () {},
-          child: Text('Home'),
+          child: Text(AppLocalizations.of(context).home),
         ),
         TextButton(
           onPressed: () {},
-          child: Text('Features'),
+          child: Text(AppLocalizations.of(context).features),
         ),
         TextButton(
           onPressed: () {},
-          child: Text('About'),
+          child: Text(AppLocalizations.of(context).about),
         ),
       ];
   }
