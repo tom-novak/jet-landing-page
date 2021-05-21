@@ -43,7 +43,7 @@ class PageCover extends StatelessWidget {
               style: subtitleTextStyle ?? Theme.of(context).textTheme.headline4
             ),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {},
             child: Text(actionLabel),
           ),

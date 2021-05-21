@@ -28,10 +28,11 @@ var appTheme = ThemeData(
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: accentColor,
   ),
-  buttonTheme: ButtonThemeData(
-    buttonColor: accentColor,
-    textTheme: ButtonTextTheme.primary,
-    height: 48,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: accentColor,
+      minimumSize: Size(48, 48),
+    ),
   ),
 );
 
@@ -56,10 +57,11 @@ var darkTheme = ThemeData(
       primary: darkAccentColor,
     ),
   ),
-  buttonTheme: ButtonThemeData(
-    buttonColor: darkAccentColor,
-    textTheme: ButtonTextTheme.primary,
-    height: 48,
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: darkAccentColor,
+      minimumSize: Size(48, 48),
+    ),
   ),
 );
 
