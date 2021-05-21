@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
-import 'package:jet_landing_page_example/src/app_theme.dart';
+import 'package:jet_landing_page_example/src/example_cards.dart';
+import 'package:jet_landing_page_example/src/example_footer.dart';
+import 'package:jet_landing_page_example/src/one_page_navigation_bar.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
@@ -41,41 +43,7 @@ class _LandingPageState extends State<LandingPage> {
     setState(() {});
   }
 
-  List<Widget> _buildCards(BuildContext context) {
-    return [
-      TextCard(
-        icon: Icons.architecture,
-        title: 'Lorem ipsum',
-        text:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
-      ),
-      TextCard(
-        icon: Icons.workspaces_outline,
-        title: 'Lorem ipsum',
-        text:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
-      ),
-      TextCard(
-        icon: Icons.whatshot_outlined,
-        title: 'Lorem ipsum',
-        text:
-            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis.',
-      ),
-    ];
-  }
-
-  Widget _buildAppBar(BuildContext context) {
-    return AppBar(
-      title: Text(
-        'Logo',
-        style: Theme.of(context).textTheme.headline2,
-      ),
-      actions: _buildLandscapeNavigation(context),
-    );
-  }
-
-  List<Widget> _buildLandscapeNavigation(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+  List<Widget> get _lanscapeNavigation {
       return [
         TextButton(
           onPressed: () {},
@@ -90,47 +58,18 @@ class _LandingPageState extends State<LandingPage> {
           child: Text('About'),
         ),
       ];
-    }
-    return null;
-  }
-
-  List<BottomNavigationBarItem> _getBottomNavigationBarItems(
-      List<NavigationItem> items) {
-    var bottomNavigationBarItems = <BottomNavigationBarItem>[];
-    for (var item in items) {
-      bottomNavigationBarItems.add(item.toBottomNavigationBarItem());
-    }
-    return bottomNavigationBarItems;
-  }
-
-  Widget _buildPortraitNavigation(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return BottomNavigationBar(
-        elevation: 32.0,
-        items: _getBottomNavigationBarItems(widget.mainNavigationItems),
-        onTap: (index) {
-          GlobalKey selectedSectionKey;
-          switch (index) {
-            case 1:
-              selectedSectionKey = sectionMap.values.elementAt(1);
-              break;
-            case 2:
-              selectedSectionKey = sectionMap.values.elementAt(2);
-              break;
-            default:
-              selectedSectionKey = sectionMap.values.elementAt(0);
-          }
-          _onePageController.animateTo(selectedSectionKey,
-              curve: Curves.linear, duration: Duration(milliseconds: 400));
-        },
-      );
-    }
-    return null;
   }
 
   @override
   Widget build(BuildContext context) {
-    AppBar appBar = _buildAppBar(context);
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    AppBar appBar = AppBar(
+      title: Text(
+        'Logo',
+        style: Theme.of(context).textTheme.headline2,
+      ),
+      actions: !isPortrait ? _lanscapeNavigation : null,
+    );
 
     var contentStart =
         appBar.preferredSize.height + MediaQuery.of(context).padding.top;
@@ -160,9 +99,8 @@ class _LandingPageState extends State<LandingPage> {
                   actionLabel: 'Make Action!',
                 ),
               ),
-              CardContainer(
+              ExampleCards(
                 key: sectionMap[PageSection.cards],
-                children: _buildCards(context),
               ),
               ParallaxImage(
                 image: Image.asset(
@@ -193,72 +131,18 @@ class _LandingPageState extends State<LandingPage> {
                 child: ParallaxText(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
               ),
-              Theme(
-                data: Theme.of(context).copyWith(
-                  textButtonTheme: footerLinkTheme,
-                ),
-                child: Footer(
-                  key: sectionMap[PageSection.about],
-                  info: SimpleParagraph(
-                    title: 'Info',
-                    titleStyle: Theme.of(context)
-                        .copyWith(brightness: Brightness.dark)
-                        .textTheme
-                        .headline6,
-                    text:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
-                    textStyle: Theme.of(context).textTheme.bodyText2,
-                    padding: EdgeInsets.zero,
-                  ),
-                  flatNavigation: SimpleParagraph(
-                    title: 'Flat navigation',
-                    titleStyle: Theme.of(context).textTheme.headline6,
-                    text:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
-                    textStyle: Theme.of(context).textTheme.bodyText2,
-                    padding: EdgeInsets.zero,
-                  ),
-                  links: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          'Connect',
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Link 1',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Link 2',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Link 3',
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )),
-                    ],
-                  ),
-                  copyright: Text(
-                    '© Jet Landing Page',
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                ),
-              ),
+              ExampleFooter(sectionMap: sectionMap),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: _buildPortraitNavigation(context),
+      bottomNavigationBar: isPortrait
+          ? OnePageNavigationBar(
+              navigationItems: widget.mainNavigationItems.toBottomNavigationBarItems(),
+              sections: sectionMap,
+              controller: _onePageController,
+            )
+          : null,
     );
   }
 }

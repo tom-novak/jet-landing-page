@@ -6,3 +6,14 @@ extension NavigationItemExtension on NavigationItem {
     return BottomNavigationBarItem(icon: this.icon, label: this.label);
   }
 }
+
+extension NavigationItemsExtension on List<NavigationItem> {
+  List<BottomNavigationBarItem> toBottomNavigationBarItems() {
+    var bottomNavigationBarItems = <BottomNavigationBarItem>[];
+    for (var item in this) {
+      bottomNavigationBarItems.add(item.toBottomNavigationBarItem());
+    }
+    return bottomNavigationBarItems;
+  }
+}
+
