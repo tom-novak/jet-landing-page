@@ -3,6 +3,7 @@ import 'package:jet_landing_page/jet_landing_page.dart';
 import 'package:jet_landing_page_example/src/app_theme.dart';
 import 'package:jet_landing_page_example/src/landing_page.dart';
 import 'package:jet_landing_page_example/src/links.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExampleFooter extends StatelessWidget {
   const ExampleFooter({
@@ -21,27 +22,25 @@ class ExampleFooter extends StatelessWidget {
       child: Footer(
         key: sectionMap[PageSection.about],
         info: SimpleParagraph(
-          title: 'Info',
+          title: AppLocalizations.of(context).info,
           titleStyle: Theme.of(context)
               .copyWith(brightness: Brightness.dark)
               .textTheme
               .headline6,
-          text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat.',
+          text: AppLocalizations.of(context).loremIpsumDolorSitAmetLong,
           textStyle: Theme.of(context).textTheme.bodyText2,
           padding: EdgeInsets.zero,
         ),
         flatNavigation: SimpleParagraph(
-          title: 'Flat navigation',
+          title: AppLocalizations.of(context).flatNavigation,
           titleStyle: Theme.of(context).textTheme.headline6,
-          text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. ',
+          text: AppLocalizations.of(context).loremIpsumDolorSitAmet,
           textStyle: Theme.of(context).textTheme.bodyText2,
           padding: EdgeInsets.zero,
         ),
         links: Links(),
         copyright: Text(
-          '© Jet Landing Page',
+          AppLocalizations.of(context).jetLandingPageCopyright,
           style: Theme.of(context).textTheme.bodyText2,
         ),
       ),

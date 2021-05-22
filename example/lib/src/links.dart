@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jet_landing_page_example/src/example_link_item.dart';
 
 class Links extends StatelessWidget {
   const Links({
@@ -13,28 +15,22 @@ class Links extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
-            'Connect',
+            AppLocalizations.of(context).connect,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
-        TextButton(
-            onPressed: () {},
-            child: Text(
-              'Link 1',
-              style: Theme.of(context).textTheme.bodyText2,
-            )),
-        TextButton(
-            onPressed: () {},
-            child: Text(
-              'Link 2',
-              style: Theme.of(context).textTheme.bodyText2,
-            )),
-        TextButton(
-            onPressed: () {},
-            child: Text(
-              'Link 3',
-              style: Theme.of(context).textTheme.bodyText2,
-            )),
+        ExampleLinkItem(
+          onTap: () {},
+          label: AppLocalizations.of(context).link1,
+        ),
+        ExampleLinkItem(
+          onTap: () {},
+          label: AppLocalizations.of(context).link2,
+        ),
+        ExampleLinkItem(
+          onTap: () {},
+          label: AppLocalizations.of(context).link3,
+        ),
       ],
     );
   }

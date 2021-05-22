@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExampleCards extends StatelessWidget {
-
   const ExampleCards({Key key}) : super(key: key);
 
   @override
@@ -11,21 +11,18 @@ class ExampleCards extends StatelessWidget {
       children: [
         TextCard(
           icon: Icons.architecture,
-          title: 'Lorem ipsum',
-          text:
-              'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
+          title: AppLocalizations.of(context).loremIpsum,
+          text: AppLocalizations.of(context).loremIpsumDolorSitAmet,
         ),
         TextCard(
           icon: Icons.workspaces_outline,
-          title: 'Lorem ipsum',
-          text:
-              'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Integer malesuada.',
+          title: AppLocalizations.of(context).loremIpsum,
+          text: AppLocalizations.of(context).loremIpsumDolorSitAmet,
         ),
         TextCard(
           icon: Icons.whatshot_outlined,
-          title: 'Lorem ipsum',
-          text:
-              'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Duis ante orci, molestie vitae vehicula venenatis.',
+          title: AppLocalizations.of(context).loremIpsum,
+          text: AppLocalizations.of(context).loremIpsumDolorSitAmetShort,
         ),
       ],
     );
