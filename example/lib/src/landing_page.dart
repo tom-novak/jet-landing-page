@@ -33,7 +33,6 @@ class _LandingPageState extends State<LandingPage> {
     for (var section in PageSection.values) {
       sectionMap.putIfAbsent(section, () => GlobalKey());
     }
-    //WidgetsBinding.instance.addPostFrameCallback(_onPostFrameCallback);
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
     _onePageController = OnePageController(scrollController: _scrollController);
@@ -91,7 +90,10 @@ class _LandingPageState extends State<LandingPage> {
                   AppLocalizations.of(context).assetBackground1,
                   scale: 3,
                 ).image,
-                height: MediaQuery.of(context).size.width,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? MediaQuery.of(context).size.width
+                        : MediaQuery.of(context).size.height,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: PageCover(
@@ -109,7 +111,10 @@ class _LandingPageState extends State<LandingPage> {
                   AppLocalizations.of(context).assetBackground2,
                   scale: 3,
                 ).image,
-                height: MediaQuery.of(context).size.width,
+                height:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.height,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
@@ -126,7 +131,10 @@ class _LandingPageState extends State<LandingPage> {
                   fit: BoxFit.fitHeight,
                   scale: 3,
                 ).image,
-                height: MediaQuery.of(context).size.width,
+                height:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.height,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
