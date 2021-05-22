@@ -91,7 +91,7 @@ class _LandingPageState extends State<LandingPage> {
                   AppLocalizations.of(context).assetBackground1,
                   scale: 3,
                 ).image,
-                height: 500,
+                height: MediaQuery.of(context).size.width,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: PageCover(
@@ -109,7 +109,7 @@ class _LandingPageState extends State<LandingPage> {
                   AppLocalizations.of(context).assetBackground2,
                   scale: 3,
                 ).image,
-                height: 500,
+                height: MediaQuery.of(context).size.width,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
@@ -126,7 +126,7 @@ class _LandingPageState extends State<LandingPage> {
                   fit: BoxFit.fitHeight,
                   scale: 3,
                 ).image,
-                height: 500,
+                height: MediaQuery.of(context).size.width,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
