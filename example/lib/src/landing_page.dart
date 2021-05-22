@@ -45,20 +45,20 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   List<Widget> get _lanscapeNavigation {
-      return [
-        TextButton(
-          onPressed: () {},
-          child: Text(AppLocalizations.of(context).home),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Text(AppLocalizations.of(context).features),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Text(AppLocalizations.of(context).about),
-        ),
-      ];
+    return [
+      TextButton(
+        onPressed: () {},
+        child: Text(AppLocalizations.of(context).home),
+      ),
+      TextButton(
+        onPressed: () {},
+        child: Text(AppLocalizations.of(context).features),
+      ),
+      TextButton(
+        onPressed: () {},
+        child: Text(AppLocalizations.of(context).about),
+      ),
+    ];
   }
 
   @override
@@ -88,16 +88,17 @@ class _LandingPageState extends State<LandingPage> {
               ParallaxImage(
                 key: sectionMap[PageSection.home],
                 image: Image.asset(
-                  'assets/background1.jpg',
+                  AppLocalizations.of(context).assetBackground1,
                   scale: 3,
                 ).image,
                 height: 500,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: PageCover(
-                  title: 'Jet Landing Page',
-                  subtitle: 'Simple Flutter Web Landing Page',
-                  actionLabel: 'Make Action!',
+                  title: AppLocalizations.of(context).jetLandingPage,
+                  subtitle:
+                      AppLocalizations.of(context).simpleFlutterWebLandingPage,
+                  actionLabel: AppLocalizations.of(context).makeAction,
                 ),
               ),
               ExampleCards(
@@ -105,24 +106,23 @@ class _LandingPageState extends State<LandingPage> {
               ),
               ParallaxImage(
                 image: Image.asset(
-                  'assets/background2.jpg',
+                  AppLocalizations.of(context).assetBackground2,
                   scale: 3,
                 ).image,
                 height: 500,
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                    AppLocalizations.of(context).loremIpsumParallaxLabel),
               ),
               SimpleParagraph(
                 alignment: CrossAxisAlignment.center,
-                title: 'Simple Paragraph',
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
+                title: AppLocalizations.of(context).simpleParagraph,
+                text: AppLocalizations.of(context).loremIpsumParagraph,
               ),
               ParallaxImage(
                 image: Image.asset(
-                  'assets/background3.jpg',
+                  AppLocalizations.of(context).assetBackground3,
                   fit: BoxFit.fitHeight,
                   scale: 3,
                 ).image,
@@ -130,7 +130,7 @@ class _LandingPageState extends State<LandingPage> {
                 contentStart: contentStart,
                 contentEnd: contentEnd,
                 child: ParallaxText(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                    AppLocalizations.of(context).loremIpsumParallaxLabel),
               ),
               ExampleFooter(sectionMap: sectionMap),
             ],
@@ -138,8 +138,9 @@ class _LandingPageState extends State<LandingPage> {
         ),
       ),
       bottomNavigationBar: isPortrait
-          ? OnePageNavigationBar(
-              navigationItems: widget.mainNavigationItems.toBottomNavigationBarItems(),
+          ? OnePageNavigationBar<PageSection>(
+              navigationItems:
+                  widget.mainNavigationItems.toBottomNavigationBarItems(),
               sections: sectionMap,
               controller: _onePageController,
             )
