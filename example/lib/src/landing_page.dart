@@ -4,6 +4,8 @@ import 'package:jet_landing_page_example/src/example_cards.dart';
 import 'package:jet_landing_page_example/src/example_footer.dart';
 import 'package:jet_landing_page_example/src/one_page_navigation_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:one_page/one_page.dart';
+import 'package:parallax_image/parallax_image.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 

@@ -10,11 +10,9 @@ export 'src/widget/card_stripe.dart';
 export 'src/widget/footer.dart';
 export 'src/widget/header.dart';
 export 'src/widget/page_cover.dart';
-export 'src/widget/parallax_image.dart';
 export 'src/widget/parallax_text.dart';
 export 'src/widget/simple_paragraph.dart';
 export 'src/widget/text_card.dart';
-export 'src/widget/one_page.dart';
 
 // extensions
 export 'src/extensions/navigation_item_extension.dart';
