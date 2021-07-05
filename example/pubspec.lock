@@ -100,6 +100,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+  one_page:
+    dependency: "direct main"
+    description:
+      path: "../../one_page"
+      relative: true
+    source: path
+    version: "0.0.1"
+  parallax_image:
+    dependency: "direct main"
+    description:
+      path: "../../parallax_image"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:

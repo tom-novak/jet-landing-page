@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jet_landing_page/jet_landing_page.dart';
+import 'package:one_page/one_page.dart';
 
 class OnePageNavigationBar<T> extends StatelessWidget {
   final List<BottomNavigationBarItem> navigationItems;
