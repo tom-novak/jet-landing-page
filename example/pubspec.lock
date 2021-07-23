@@ -103,9 +103,11 @@ packages:
   one_page:
     dependency: "direct main"
     description:
-      path: "../../one_page"
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "4e22854a5c31a3f1955f5c96cf4d5f6bdb08ff78"
+      url: "https://github.com/tom-novak/one-page.git"
+    source: git
     version: "0.0.1"
   path:
     dependency: transitive
