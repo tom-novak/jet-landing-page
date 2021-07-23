@@ -107,13 +107,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  parallax_image:
-    dependency: "direct main"
-    description:
-      path: "../../parallax_image"
-      relative: true
-    source: path
-    version: "0.0.1"
   path:
     dependency: transitive
     description:

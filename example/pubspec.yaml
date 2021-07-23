@@ -27,8 +27,6 @@ dependencies:
     sdk: flutter
   jet_landing_page:
     path: ../
-  parallax_image:
-    path: ../../parallax_image
   one_page:
     path: ../../one_page
   # The following adds the Cupertino Icons font to your application.

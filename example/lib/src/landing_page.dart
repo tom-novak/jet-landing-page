@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jet_landing_page/jet_landing_page.dart';
 import 'package:jet_landing_page_example/src/example_cards.dart';
 import 'package:jet_landing_page_example/src/example_footer.dart';
+import 'package:jet_landing_page_example/src/image_section.dart';
 import 'package:jet_landing_page_example/src/one_page_navigation_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:one_page/one_page.dart';
-import 'package:parallax_image/parallax_image.dart';
 
 typedef NavigationCallback = Function(NavigationItem item);
 
@@ -76,7 +76,10 @@ class _LandingPageState extends State<LandingPage> {
 
     var contentStart =
         appBar.preferredSize.height + MediaQuery.of(context).padding.top;
-    var contentEnd = MediaQuery.of(context).size.height;
+
+    var imageSectionHeight = MediaQuery.of(context).orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.width
+        : MediaQuery.of(context).size.height - contentStart;
 
     return Scaffold(
       appBar: appBar,
@@ -87,33 +90,23 @@ class _LandingPageState extends State<LandingPage> {
           controller: _scrollController,
           child: Column(
             children: [
-              ParallaxImage(
+              ImageSection(
                 key: sectionMap[PageSection.home],
-                image: Image.asset(
-                  AppLocalizations.of(context).assetBackground1,
-                  scale: 3,
-                ).image,
-                height: MediaQuery.of(context).size.width,
-                contentStart: contentStart,
-                contentEnd: contentEnd,
+                backgroundAsset: AppLocalizations.of(context).assetBackground1,
+                height: imageSectionHeight,
                 child: PageCover(
                   title: AppLocalizations.of(context).jetLandingPage,
                   subtitle:
-                      AppLocalizations.of(context).simpleFlutterWebLandingPage,
+                  AppLocalizations.of(context).simpleFlutterWebLandingPage,
                   actionLabel: AppLocalizations.of(context).makeAction,
                 ),
               ),
               ExampleCards(
                 key: sectionMap[PageSection.cards],
               ),
-              ParallaxImage(
-                image: Image.asset(
-                  AppLocalizations.of(context).assetBackground2,
-                  scale: 3,
-                ).image,
-                height: MediaQuery.of(context).size.width,
-                contentStart: contentStart,
-                contentEnd: contentEnd,
+              ImageSection(
+                backgroundAsset: AppLocalizations.of(context).assetBackground2,
+                height: imageSectionHeight,
                 child: ParallaxText(
                     AppLocalizations.of(context).loremIpsumParallaxLabel),
               ),
@@ -122,15 +115,9 @@ class _LandingPageState extends State<LandingPage> {
                 title: AppLocalizations.of(context).simpleParagraph,
                 text: AppLocalizations.of(context).loremIpsumParagraph,
               ),
-              ParallaxImage(
-                image: Image.asset(
-                  AppLocalizations.of(context).assetBackground3,
-                  fit: BoxFit.fitHeight,
-                  scale: 3,
-                ).image,
-                height: MediaQuery.of(context).size.width,
-                contentStart: contentStart,
-                contentEnd: contentEnd,
+              ImageSection(
+                backgroundAsset: AppLocalizations.of(context).assetBackground3,
+                height: imageSectionHeight,
                 child: ParallaxText(
                     AppLocalizations.of(context).loremIpsumParallaxLabel),
               ),
