@@ -66,7 +66,8 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-    AppBar appBar = AppBar(
+
+    var appBar = AppBar(
       title: Text(
         'Logo',
         style: Theme.of(context).textTheme.headline2,
@@ -77,9 +78,15 @@ class _LandingPageState extends State<LandingPage> {
     var contentStart =
         appBar.preferredSize.height + MediaQuery.of(context).padding.top;
 
-    var imageSectionHeight = MediaQuery.of(context).orientation == Orientation.portrait
+    var imageSectionHeight = isPortrait
         ? MediaQuery.of(context).size.width
         : MediaQuery.of(context).size.height - contentStart;
+
+    var secondaryImageSectionHeight =
+        isPortrait ? MediaQuery.of(context).size.width : 300;
+
+    var contentWidth =
+        isPortrait ? null : MediaQuery.of(context).size.width * 0.8;
 
     return Scaffold(
       appBar: appBar,
@@ -94,34 +101,50 @@ class _LandingPageState extends State<LandingPage> {
                 key: sectionMap[PageSection.home],
                 backgroundAsset: AppLocalizations.of(context).assetBackground1,
                 height: imageSectionHeight,
-                child: PageCover(
-                  title: AppLocalizations.of(context).jetLandingPage,
-                  subtitle:
-                  AppLocalizations.of(context).simpleFlutterWebLandingPage,
-                  actionLabel: AppLocalizations.of(context).makeAction,
+                child: Container(
+                  width: contentWidth,
+                  child: PageCover(
+                    title: AppLocalizations.of(context).jetLandingPage,
+                    subtitle: AppLocalizations.of(context)
+                        .simpleFlutterWebLandingPage,
+                    actionLabel: AppLocalizations.of(context).makeAction,
+                  ),
                 ),
               ),
-              ExampleCards(
-                key: sectionMap[PageSection.cards],
+              Container(
+                width: contentWidth,
+                child: ExampleCards(
+                  key: sectionMap[PageSection.cards],
+                ),
               ),
               ImageSection(
                 backgroundAsset: AppLocalizations.of(context).assetBackground2,
-                height: imageSectionHeight,
-                child: ParallaxText(
-                    AppLocalizations.of(context).loremIpsumParallaxLabel),
+                height: secondaryImageSectionHeight,
+                child: Container(
+                  width: contentWidth,
+                  padding: const EdgeInsets.all(8.0),
+                  child: ParallaxText(
+                      AppLocalizations.of(context).loremIpsumParallaxLabel),
+                ),
               ),
-              SimpleParagraph(
-                alignment: CrossAxisAlignment.center,
-                title: AppLocalizations.of(context).simpleParagraph,
-                text: AppLocalizations.of(context).loremIpsumParagraph,
+              Container(
+                width: contentWidth,
+                child: SimpleParagraph(
+                  alignment: CrossAxisAlignment.center,
+                  title: AppLocalizations.of(context).simpleParagraph,
+                  text: AppLocalizations.of(context).loremIpsumParagraph,
+                ),
               ),
               ImageSection(
                 backgroundAsset: AppLocalizations.of(context).assetBackground3,
-                height: imageSectionHeight,
+                height: secondaryImageSectionHeight,
                 child: ParallaxText(
                     AppLocalizations.of(context).loremIpsumParallaxLabel),
               ),
-              ExampleFooter(sectionMap: sectionMap),
+              ExampleFooter(
+                sectionMap: sectionMap,
+                contentWidth: contentWidth,
+              ),
             ],
           ),
         ),

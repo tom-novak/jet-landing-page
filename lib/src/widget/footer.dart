@@ -8,7 +8,6 @@ class Footer extends StatelessWidget {
   final Widget links;
   final Widget copyright;
   final EdgeInsets padding;
-  final Color color;
 
   Footer({
     Key key,
@@ -17,7 +16,6 @@ class Footer extends StatelessWidget {
     this.links,
     this.copyright,
     this.padding = defaultPadding,
-    this.color,
   }) : super(key: key);
 
   Widget _buildHorizontalContent(BuildContext context) {
@@ -73,7 +71,6 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
-      color: color ?? Theme.of(context).accentColor,
       child: Column(
         children: [
           MediaQuery.of(context).orientation == Orientation.portrait
