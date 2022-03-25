@@ -16,7 +16,7 @@ class Links extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
             AppLocalizations.of(context).connect,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
         ExampleLinkItem(

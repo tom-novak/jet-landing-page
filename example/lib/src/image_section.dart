@@ -26,6 +26,10 @@ class ImageSection extends StatelessWidget {
                       MediaQuery.of(context).orientation == Orientation.portrait
                           ? BoxFit.fitHeight
                           : BoxFit.fitWidth,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.4),
+                    BlendMode.srcOver,
+                  ),
                 ),
               ),
               child: child,

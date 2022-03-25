@@ -19,30 +19,41 @@ class TextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          icon,
-          size: 64,
-          color: Theme.of(context).textTheme.bodyText1.color,
-        ),
-        title != null
-            ? Padding(
-                padding: EdgeInsets.only(top: 32, bottom: 16),
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.headline3,
-                ))
-            : SizedBox.shrink(),
-        text != null
-            ? Text(
-                text,
-                style: textStyle ?? Theme.of(context).textTheme.bodyText1.copyWith(height: 1.75),
-                textAlign: textAlign ?? defaultTextAlign,
-              )
-            : SizedBox.shrink(),
-      ],
+    var colorScheme = Theme.of(context).colorScheme;
+    var textTheme = Theme.of(context).textTheme;
+    return Container(
+      color: colorScheme.background,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 64,
+            color: colorScheme.onBackground,
+          ),
+          title != null
+              ? Padding(
+                  padding: EdgeInsets.only(top: 32, bottom: 16),
+                  child: Text(
+                    title,
+                    style: textTheme.headlineMedium.copyWith(
+                      color: colorScheme.onBackground,
+                    ),
+                  ))
+              : SizedBox.shrink(),
+          text != null
+              ? Text(
+                  text,
+                  style: textStyle ??
+                      textTheme.bodyMedium.copyWith(
+                        height: 1.75,
+                        color: colorScheme.onBackground,
+                      ),
+                  textAlign: textAlign ?? defaultTextAlign,
+                )
+              : SizedBox.shrink(),
+        ],
+      ),
     );
   }
 }

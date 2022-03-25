@@ -15,7 +15,7 @@ class ExampleLinkItem extends StatelessWidget {
         onPressed: onTap,
         child: Text(
           label,
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodySmall,
         ));
   }
 }

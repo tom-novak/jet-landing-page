@@ -33,15 +33,14 @@ class PageCover extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: titleTextStyle ?? Theme.of(context).textTheme.headline1,
+            style: titleTextStyle ?? Theme.of(context).textTheme.displayLarge,
           ),
           Padding(
             padding: EdgeInsets.only(top: 16, bottom: 24),
-            child: Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: subtitleTextStyle ?? Theme.of(context).textTheme.headline4
-            ),
+            child: Text(subtitle,
+                textAlign: TextAlign.center,
+                style: subtitleTextStyle ??
+                    Theme.of(context).textTheme.displaySmall),
           ),
           ElevatedButton(
             onPressed: () {},
