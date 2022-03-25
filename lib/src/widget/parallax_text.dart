@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ParallaxText extends StatelessWidget {
-
   final String text;
 
   ParallaxText(this.text);
@@ -15,7 +14,7 @@ class ParallaxText extends StatelessWidget {
         children: [
           Text(
             text,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.displaySmall,
             textAlign: TextAlign.center,
           ),
         ],

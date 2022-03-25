@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SimpleParagraph extends StatelessWidget {
@@ -32,16 +31,17 @@ class SimpleParagraph extends StatelessWidget {
         children: [
           title != null
               ? Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Text(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Text(
                     title,
-                    style: titleStyle ?? Theme.of(context).textTheme.headline3,
+                    style:
+                        titleStyle ?? Theme.of(context).textTheme.headlineMedium,
                   ),
-              )
+                )
               : SizedBox.shrink(),
           Text(
             text,
-            style: textStyle ?? Theme.of(context).textTheme.bodyText1,
+            style: textStyle ?? Theme.of(context).textTheme.bodyMedium,
             textAlign: textAlign ?? defaultTextAlign,
           ),
         ],

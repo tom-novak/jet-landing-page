@@ -1,8 +1,7 @@
 name: jet_landing_page
 description: Simple web landing page for Flutter
 version: 0.0.1
-author:
-homepage:
+homepage: http://tom-novak.com
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

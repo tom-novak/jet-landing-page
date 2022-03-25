@@ -70,7 +70,6 @@ class _LandingPageState extends State<LandingPage> {
     var appBar = AppBar(
       title: Text(
         'Logo',
-        style: Theme.of(context).textTheme.headline2,
       ),
       actions: !isPortrait ? _lanscapeNavigation : null,
     );
