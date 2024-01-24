@@ -4,6 +4,8 @@ import 'package:jet_landing_page_example/src/landing_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExamplePage extends StatelessWidget {
+  const ExamplePage({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return LandingPage(
